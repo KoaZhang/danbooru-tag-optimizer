@@ -41,7 +41,7 @@ python3 scripts/search_tags.py --random --subcategory "表情" --count 15  # Ran
 
 When you need to find the right tags, always use this script rather than guessing. It's fast and authoritative.
 
-## Two core workflows
+## Three core workflows
 
 ### Workflow 1: Character creation from description (设定 → Tags)
 
@@ -87,6 +87,29 @@ When the user provides an existing set of tags to improve:
    Added: [new tags]
    Replaced: [old → new]
    Removed: [tags]
+   ```
+
+### Workflow 3: Attribute swap while keeping character identity (换属性，保一致)
+
+When the user wants to change specific attributes (expression, clothing, pose, background) while keeping the character recognizable:
+
+1. **Identify anchor tags** — Parse the input tags and separate them into anchor (identity) and variable (scene):
+   - Anchor: hair color/style, eye color, body type, skin, markings, race/species, signature accessories
+   - Variable: expression, clothing, action/pose, held objects, environment, composition
+
+2. **Keep all anchor tags unchanged** — None of the character-defining tags should be touched
+
+3. **Swap only the requested variable tags** — Use the search script to find the right replacement tags for what the user asked to change. If the user says "smile", search for the most appropriate smile-related expression tag. If they say "casual clothes", search for casual clothing tags consistent with the character
+
+4. **Prune conflicting variable tags** — After swapping, remove any variable tags that conflict with the new ones. For example, if swapping to `casual`, remove combat-related clothing and objects (like `holding_sword`)
+
+5. **Output** — The full comma-separated tag list with changes, followed by a change summary:
+   ```
+   [complete tag list with anchors preserved + new variable tags]
+   ---
+   Preserved: [anchor tags kept unchanged]
+   Replaced: [old → new]
+   Removed: [conflicting tags]
    ```
 
 ## Character consistency system
