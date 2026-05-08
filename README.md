@@ -68,3 +68,5 @@ After installing, the skill activates automatically when you talk about anime ch
 ## License
 
 Apache 2.0 — same as the source dataset.
+
+中文说明请见 [README.zh-CN.md](README.zh-CN.md)。
