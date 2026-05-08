@@ -1,4 +1,4 @@
-# Danbooru Tag Optimizer（丹波路标签优化器）
+# Danbooru Tag Optimizer
 
 一个 Claude Code 技能，用于生成、优化和维护 ComfyUI / Stable Diffusion 角色生图所需的 Danbooru 风格提示词。
 
